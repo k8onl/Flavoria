@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Flavoria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="index.html" class="brand">
+                <img src="img/logo1.png" alt="Flavoria Logo" class="brand-logo">
+                <div>
+                    <strong>Flavoria</strong>
+                    <small>Delicious. Every Day.</small>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="active">Login</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-link" id="cartLink">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero login-hero">
+            <div class="container hero-banner">
+                <div class="hero-banner-copy">
+                    <span class="eyebrow">Welcome back</span>
+                    <h1>Log in and order your next favorite meal.</h1>
+                    <p>Securely access your saved preferences, active cart, and fast checkout.</p>
+                </div>
+                <div class="hero-banner-image">
+                    <img src="img/download - 2026-05-07T214652.736.jpg" alt="Fresh food and bowls">
+                </div>
+            </div>
+        </section>
+
+        <section class="login-page">
+            <div class="container auth-grid">
+                <div class="auth-panel">
+                    <h2>Login to Your Account</h2>
+                    <div id="message" class="message" style="display: none;"></div>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+                    <p class="register-link">Don't have an account? <a href="#" id="registerLink">Register here</a></p>
+                </div>
+
+                <div class="auth-image">
+                    <img src="img/yummy burger😋.jpg" alt="Healthy salad bowl in ergonomic bowl">
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-strip">
+            <div class="container brand-row">
+                <span class="brand-pill">TasteWell</span>
+                <span class="brand-pill">BiteJoy</span>
+                <span class="brand-pill">Yumora</span>
+                <span class="brand-pill">NutriBite</span>
+                <span class="brand-pill">CraveNest</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flavoria</h3>
+                    <p>Fresh food experiences made simple and delightful.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigate</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Yummy City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> hello@flavoria.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flavoria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+order_id,email,items_json,total,status,timestamp
+51e7ae5d,oshazly01@gmail.com,"[{""id"": 2, ""name"": ""Pepperoni Pizza"", ""price"": 14.99, ""image"": ""img/food/pizza2.jpg"", ""quantity"": 1, ""size"": ""Medium"", ""extra"": ""None"", ""drink"": ""None"", ""note"": """"}, {""id"": 3, ""name"": ""Cheeseburger"", ""price"": 9.99, ""image"": ""img/food/cheeseburger.jpg"", ""quantity"": 1, ""size"": ""Medium"", ""extra"": ""None"", ""drink"": ""None"", ""note"": """"}]",26.98,Pending,2026-05-08T12:30:07.356Z

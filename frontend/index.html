@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flavoria — Good Food, Good Mood</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="index.html" class="brand">
+                <img src="img/logo1.png" alt="Flavoria Logo" class="brand-logo">
+                <div>
+                    <strong>Flavoria</strong>
+                    <small>Delicious. Every Day.</small>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-link" id="cartLink">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Organic comfort food</span>
+                    <h1>Good Food, <span>Good Mood!</span></h1>
+                    <p>Discover delicious meals made with fresh ingredients and a lot of love.</p>
+                    <a href="menu.html" class="btn-primary">Explore Menu</a>
+                </div>
+
+                <div class="hero-media">
+                    <div class="hero-image">
+                        <img src="img/food/home1.jpg" alt="Salad bowl with chicken, avocado, cherry tomatoes, and grains">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-wave">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                    <path d="M0,32 C220,96 420,0 720,48 C1020,96 1220,10 1440,64 L1440,120 L0,120 Z" fill="#fcfcfb"></path>
+                </svg>
+            </div>
+        </section>
+
+        <section class="popular-categories">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="section-label"><i class="fas fa-leaf"></i> Popular Categories</span>
+                    <h2>Explore flavors from every corner of taste.</h2>
+                </div>
+
+                <div class="category-cards">
+                    <article class="category-card">
+                        <div class="card-image">
+                            <img src="img/food/pizza1.jpg" alt="Pizza">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title-row">
+                                <span class="icon-circle"><i class="fas fa-pizza-slice"></i></span>
+                                <div>
+                                    <h3>Pizza</h3>
+                                    <p>Hot, cheesy & irresistible.</p>
+                                </div>
+                            </div>
+                            <a href="menu.html" class="card-link">View <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="category-card">
+                        <div class="card-image">
+                            <img src="img/food/burger1.jpg" alt="Burgers">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title-row">
+                                <span class="icon-circle"><i class="fas fa-hamburger"></i></span>
+                                <div>
+                                    <h3>Burgers</h3>
+                                    <p>Juicy, tasty & made to satisfy.</p>
+                                </div>
+                            </div>
+                            <a href="menu.html" class="card-link">View <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="category-card">
+                        <div class="card-image">
+                            <img src="img/food/sandwich1.jpg" alt="Sandwiches">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title-row">
+                                <span class="icon-circle"><i class="fas fa-bread-slice"></i></span>
+                                <div>
+                                    <h3>Sandwiches</h3>
+                                    <p>Fresh, filling & perfect anytime.</p>
+                                </div>
+                            </div>
+                            <a href="menu.html" class="card-link">View <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="offers-section">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="section-label"><i class="fas fa-tags"></i> Special Offers</span>
+                    <h2>Limited time deals on your favorites.</h2>
+                </div>
+
+                <div class="offers-grid">
+                    <div class="offer-card">
+                        <div class="offer-badge">20% OFF</div>
+                        <img src="img/food/pizza1.jpg" alt="Pizza Offer">
+                        <div class="offer-content">
+                            <h3>Pizza Special</h3>
+                            <p>Get 20% off on all pizzas. Valid on orders above $25.</p>
+                            <span class="offer-price">From $11.99</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-badge">Buy 1 Get 1</div>
+                        <img src="img/food/burger1.jpg" alt="Burger Offer">
+                        <div class="offer-content">
+                            <h3>Burger Deal</h3>
+                            <p>Buy one burger, get the second one free. Mix and match available.</p>
+                            <span class="offer-price">From $9.99</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-badge">Free Delivery</div>
+                        <img src="img/food/sandwich1.jpg" alt="Sandwich Offer">
+                        <div class="offer-content">
+                            <h3>Free Delivery Day</h3>
+                            <p>Free delivery on all orders every Wednesday. No minimum order.</p>
+                            <span class="offer-price">All Day Wednesday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="section-label"><i class="fas fa-star"></i> Customer Reviews</span>
+                    <h2>What our customers say about us.</h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Amazing food quality and super fast delivery! The pizza was hot and fresh. Will definitely order again."</p>
+                        <div class="testimonial-author">
+                            <img src="img/Screenshot 2026-05-07 205431.png" alt="Sarah Johnson">
+                            <div>
+                                <strong>Sarah Johnson</strong>
+                                <small>Regular Customer</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The burgers are incredible! Juicy and flavorful. The app is easy to use and delivery is always on time."</p>
+                        <div class="testimonial-author">
+                            <img src="img/Screenshot 2026-05-07 205545.png" alt="Mike Chen">
+                            <div>
+                                <strong>Mike Chen</strong>
+                                <small>Food Enthusiast</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Great variety of healthy options. The salads are fresh and the sandwiches are delicious. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <img src="img/Screenshot 2026-05-07 205506.png" alt="Emma Davis">
+                            <div>
+                                <strong>Emma Davis</strong>
+                                <small>Health Conscious</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="section-label"><i class="fas fa-fire"></i> Featured Today</span>
+                    <h2>Handpicked dishes from our chef's special menu.</h2>
+                </div>
+
+                <div class="featured-grid" id="featuredFoods">
+                    <!-- Featured foods will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-strip">
+            <div class="container brand-row">
+                <span class="brand-pill">TasteWell</span>
+                <span class="brand-pill">BiteJoy</span>
+                <span class="brand-pill">Yumora</span>
+                <span class="brand-pill">NutriBite</span>
+                <span class="brand-pill">CraveNest</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flavoria</h3>
+                    <p>Fresh food experiences made simple and delightful.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigate</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Yummy City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> hello@flavoria.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flavoria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

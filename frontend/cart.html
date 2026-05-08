@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Flavoria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="index.html" class="brand">
+                <img src="img/logo1.png" alt="Flavoria Logo" class="brand-logo">
+                <div>
+                    <strong>Flavoria</strong>
+                    <small>Delicious. Every Day.</small>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-link active">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero cart-hero">
+            <div class="container hero-banner">
+                <div class="hero-banner-copy">
+                    <span class="eyebrow">Your selections</span>
+                    <h1>Review your cart and checkout.</h1>
+                    <p>Double-check your delicious choices before placing your order.</p>
+                </div>
+                <div class="hero-banner-image">
+                    <img src="img/BurkleHagen Food Photography.gif" alt="Food cart with fresh ingredients">
+                </div>
+            </div>
+        </section>
+
+        <section class="cart-page">
+            <div class="container">
+                <div id="cartContent">
+                    <!-- Cart content will be loaded here -->
+                </div>
+                <div id="undoToast" class="undo-toast">
+                    <span>Item removed.</span>
+                    <button id="undoButton">Undo</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-strip">
+            <div class="container brand-row">
+                <span class="brand-pill">TasteWell</span>
+                <span class="brand-pill">BiteJoy</span>
+                <span class="brand-pill">Yumora</span>
+                <span class="brand-pill">NutriBite</span>
+                <span class="brand-pill">CraveNest</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flavoria</h3>
+                    <p>Fresh food experiences made simple and delightful.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigate</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Yummy City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> hello@flavoria.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flavoria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load cart content on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCartPage();
+            const undoButton = document.getElementById('undoButton');
+            if (undoButton) {
+                undoButton.addEventListener('click', function() {
+                    undoLastDelete();
+                    displayCartPage();
+                });
+            }
+        });
+
+        function getExtraPrice(option) {
+            const extras = {
+                'None': 0,
+                'Extra Cheese': 1.50,
+                'Avocado': 2.00,
+                'Bacon': 2.50,
+                'Olives': 1.00
+            };
+            return extras[option] || 0;
+        }
+
+        function getDrinkPrice(option) {
+            const drinks = {
+                'None': 0,
+                'Coke': 1.99,
+                'Juice': 2.49,
+                'Water': 0.99,
+                'Smoothie': 3.50
+            };
+            return drinks[option] || 0;
+        }
+
+        function getSizePrice(option) {
+            const sizes = {
+                'Small': 0,
+                'Medium': 1.00,
+                'Large': 2.00
+            };
+            return sizes[option] || 0;
+        }
+
+        function normalizeSavedCartItem(item) {
+            return {
+                ...item,
+                size: item.size || 'Medium',
+                extra: item.extra || 'None',
+                drink: item.drink || 'None',
+                note: item.note || ''
+            };
+        }
+
+        function displayCartPage() {
+            const cartContent = document.getElementById('cartContent');
+            const savedCart = (JSON.parse(localStorage.getItem('cart')) || []).map(normalizeSavedCartItem);
+
+            if (savedCart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart-page">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Add some delicious items from our menu!</p>
+                        <a href="menu.html" class="btn-primary">Browse Menu</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let total = 0;
+            let orderSummaryItems = '';
+
+            const cartItemsHTML = savedCart.map(item => {
+                const extraTotal = getExtraPrice(item.extra);
+                const drinkTotal = getDrinkPrice(item.drink);
+                const sizeTotal = getSizePrice(item.size);
+                const itemTotal = ((item.price + extraTotal + drinkTotal + sizeTotal) * item.quantity).toFixed(2);
+                total += parseFloat(itemTotal);
+                orderSummaryItems += `<li>${item.quantity} x ${item.name} (${item.size}) - $${itemTotal}</li>`;
+                return `
+                    <div class="cart-page-item">
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p class="item-price">$${item.price.toFixed(2)} base price</p>
+                            <div class="order-customization">
+                                <label>Size</label>
+                                <select class="size-select" data-id="${item.id}">
+                                    <option value="Small" ${item.size === 'Small' ? 'selected' : ''}>Small (+$0.00)</option>
+                                    <option value="Medium" ${item.size === 'Medium' ? 'selected' : ''}>Medium (+$1.00)</option>
+                                    <option value="Large" ${item.size === 'Large' ? 'selected' : ''}>Large (+$2.00)</option>
+                                </select>
+                                <label>Extra ingredient</label>
+                                <select class="extra-select" data-id="${item.id}">
+                                    <option value="None" ${item.extra === 'None' ? 'selected' : ''}>None</option>
+                                    <option value="Extra Cheese" ${item.extra === 'Extra Cheese' ? 'selected' : ''}>Extra Cheese (+$1.50)</option>
+                                    <option value="Avocado" ${item.extra === 'Avocado' ? 'selected' : ''}>Avocado (+$2.00)</option>
+                                    <option value="Bacon" ${item.extra === 'Bacon' ? 'selected' : ''}>Bacon (+$2.50)</option>
+                                    <option value="Olives" ${item.extra === 'Olives' ? 'selected' : ''}>Olives (+$1.00)</option>
+                                </select>
+                                <label>Drink</label>
+                                <select class="drink-select" data-id="${item.id}">
+                                    <option value="None" ${item.drink === 'None' ? 'selected' : ''}>None</option>
+                                    <option value="Coke" ${item.drink === 'Coke' ? 'selected' : ''}>Coke (+$1.99)</option>
+                                    <option value="Juice" ${item.drink === 'Juice' ? 'selected' : ''}>Juice (+$2.49)</option>
+                                    <option value="Water" ${item.drink === 'Water' ? 'selected' : ''}>Water (+$0.99)</option>
+                                    <option value="Smoothie" ${item.drink === 'Smoothie' ? 'selected' : ''}>Smoothie (+$3.50)</option>
+                                </select>
+                                <label>Special requests</label>
+                                <input type="text" class="order-note" data-id="${item.id}" value="${item.note}" placeholder="Add or take off ingredients...">
+                            </div>
+                        </div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                        <p class="item-total">$${itemTotal}</p>
+                        <button class="remove-item" data-id="${item.id}">×</button>
+                    </div>
+                `;
+            }).join('');
+
+            const cartHTML = `
+                <div class="cart-items-list">
+                    <h2>Your Cart Items</h2>
+                    ${cartItemsHTML}
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <h3>Total: $<span id="cartTotal">${total.toFixed(2)}</span></h3>
+                    </div>
+                    <div class="final-order-list">
+                        <h4>Final Order</h4>
+                        <ul>
+                            ${orderSummaryItems}
+                        </ul>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn-secondary" onclick="clearCart()">Clear Cart</button>
+                        <button class="btn-primary" id="checkoutBtn">Book Order</button>
+                    </div>
+                </div>
+            `;
+
+            cartContent.innerHTML = cartHTML;
+
+            document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(foodId, -1);
+                    displayCartPage();
+                });
+            });
+
+            document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(foodId, 1);
+                    displayCartPage();
+                });
+            });
+
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(foodId);
+                    displayCartPage();
+                });
+            });
+
+            document.querySelectorAll('.size-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    const selectedValue = this.value;
+                    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                    const item = cartItems.find(i => i.id === foodId);
+                    if (item) {
+                        item.size = selectedValue;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                        displayCartPage();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.extra-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    const selectedValue = this.value;
+                    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                    const item = cartItems.find(i => i.id === foodId);
+                    if (item) {
+                        item.extra = selectedValue;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                        displayCartPage();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.drink-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    const selectedValue = this.value;
+                    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                    const item = cartItems.find(i => i.id === foodId);
+                    if (item) {
+                        item.drink = selectedValue;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                        displayCartPage();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.order-note').forEach(input => {
+                input.addEventListener('change', function() {
+                    const foodId = parseInt(this.getAttribute('data-id'));
+                    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                    const item = cartItems.find(i => i.id === foodId);
+                    if (item) {
+                        item.note = this.value;
+                        localStorage.setItem('cart', JSON.stringify(cartItems));
+                    }
+                });
+            });
+
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                // 1. Check if cart is empty
+                if (savedCart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+
+                // 2. Check if user is logged in
+                if (localStorage.getItem('loggedIn') !== 'true') {
+                    alert('Please login to place an order.');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // 3. Create the order object
+                const cartForOrder = JSON.parse(localStorage.getItem('cart')) || [];
+                const order = {
+                    items: cartForOrder.map(normalizeSavedCartItem),
+                    total: total,
+                    timestamp: new Date().toISOString(),
+                    status: 'Pending'
+                };
+
+                // 4. Save to local browser memory
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                // 5. Sync new order to Python Database (CSV)
+                fetch(`${API_BASE_URL}/add-order`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        email: localStorage.getItem('userEmail'), 
+                        order: order 
+                    })
+                }).catch(err => console.error("Error saving to database:", err));
+
+                // 6. Generate the bill and clear the cart
+                generateBillPreview(order);
+                localStorage.removeItem('cart');
+                displayCartPage();
+            });
+        }
+
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = []; // Explicitly empty the cart memory
+                saveCartToLocalStorage(); // This now automatically syncs the empty cart to Python!
+                displayCartPage();
+                updateCartUI(); // Update the top right nav counter
+            }
+        }
+    </script>
+</body>
+</html>

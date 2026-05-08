@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Flavoria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- (Copy your exact <header class="topbar">...</header> here from index.html) -->
+
+    <main>
+        <section class="page-hero" style="background: linear-gradient(180deg, #f0f7f4 0%, #ffffff 100%);">
+            <div class="container hero-banner">
+                <div class="hero-banner-copy">
+                    <span class="eyebrow">Order History</span>
+                    <h1>Track & Pay for Orders.</h1>
+                    <p>Review your past meals and complete pending payments easily using Vodafone Cash.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="orders-page" style="padding: 40px 0 80px;">
+            <div class="container">
+                <div class="orders-grid" id="ordersList">
+                    <!-- Orders will be generated here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Vodafone Cash Payment Modal -->
+        <div id="vfcModal" class="custom-modal">
+            <div class="custom-modal-content">
+                <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #e60000; margin-bottom: 15px; display: block;"></i>
+                <h3>Vodafone Cash Payment</h3>
+                <p style="margin-bottom: 10px;">Please transfer the exact amount below to <strong>01055822772</strong> and upload a screenshot of your transaction.</p>
+                
+                <!-- Display Total in Green -->
+                <h2 id="vfcTotalDisplay" style="color: #28a745; font-size: 1.8rem; margin: 15px 0 25px;"></h2>
+                
+                <!-- Screenshot File Upload -->
+                <div style="text-align: left; margin-bottom: 20px;">
+                    <label for="vfcScreenshot" style="display: block; margin-bottom: 8px; font-weight: bold; color: #2f4f34; font-size: 0.9rem;">Upload Receipt Screenshot</label>
+                    <input type="file" id="vfcScreenshot" accept="image/*" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px dashed #c2d7b6; background: #f9fdf7; cursor: pointer; color: #4a5e4a;">
+                </div>
+
+                <div class="modal-actions">
+                    <button id="cancelVfc" class="btn-cancel">Cancel</button>
+                    <button id="confirmVfc" class="btn-primary" style="background: #e60000; box-shadow: 0 10px 20px rgba(230,0,0,0.2);">Confirm Payment</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- (Copy your exact <footer class="page-footer">...</footer> here from index.html) -->
+
+    <script src="script.js"></script>
+</body>
+</html>

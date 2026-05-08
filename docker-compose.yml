@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      # CRITICAL: This maps your local database folder to the container.
+      # This ensures your CSV data survives even if the container restarts.
+      - ./backend/database:/app/database
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
