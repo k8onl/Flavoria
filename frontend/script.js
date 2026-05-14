@@ -1,5 +1,5 @@
 // Change this to your AWS EC2 Public IP later!
-const API_BASE_URL = 'http://54.87.249.161:5000';
+const API_BASE_URL = 'http://54.162.239.164:5000';
 
 // Food data
 const foodData = [
